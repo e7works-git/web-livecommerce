@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="설치 없이 가입 즉시 바로 이용할 수 있는 무료 채팅 서비스를 제공 해 드리겠습니다." />
+    <meta name="author" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="바로 이용하는 무료 채팅 솔루션" />
+    <meta property="og:description" content="설치 없이 가입 즉시 바로 이용할 수 있는 무료 채팅 서비스를 제공 해 드리겠습니다." />
+    <meta property="og:image" content="https://www.vchatcloud.com/img/common/og_img.png" />
+    <meta property="og:url" content="https://www.vchatcloud.com" />
+
+    <title>라이브커머스형</title>
+    <link rel="canonical" href="https:// vchatcloud.com/index.html" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/toastr.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/c13f14f04a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://vchatcloud.com/lib/vchatcloud-last.min.js"></script>
+    <!-- <script src="js/libs/e7lib.min.js"></script> -->
+    <script src="https://vchatcloud.com/lib/e7lib-latest.min.js"></script>
+    <script src="js/libs/jquery.als-2.1.min.js"></script>
+    <script src="js/libs/toastr.min.js"></script>
+    <script src="js/libs/jszip.min.js"></script>
+    <script src="js/libs/sly.min.js"></script>
+    <!-- defer 태그 삭제 시 오류나니 주의 -->
+    <script src="js/libs/mo.min.js" defer></script>
+
+    <script src="js/login.js"></script>
+    <script src="js/draw.js"></script>
+    <script src="js/emoji.js"></script>
+    <script src="js/errMsg.js"></script>
+</head>
+
+<style>
+    /* 210625 추가 */
+    
+    .title p {
+        text-align: right;
+    }
+    
+    .title i {
+        font-size: 14px;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <div id="wrap">
+        <section>
+            <!-- 샘플 화면 -->
+            <div class="livecommerce">
+                <div class="video">
+                    <iframe id="ytplayer" type="text/html" width="100%" height="100%" src="https://www.youtube.com/embed/l82gMvnnUyA?autoplay=1&controls=0&mute=1&modestbranding=1&rel=0&loop=1" frameborder="0"></iframe>
+                </div>
+                <!-- 로그인 -->
+                <div class="dim">
+                    <div class="login">
+                        <p class="login-title">채팅방 설정</p>
+                        <div class="profile">
+                            <p>프로필 이미지</p>
+                            <div class="als-container" id="lista1">
+                                <span class="als-prev"><img src="img/profile/left_arrow.png" alt="prev" title="previous" width="100%" /></span>
+                                <div class="als-viewport">
+                                    <div class="als-wrapper"></div>
+                                </div>
+                                <span class="als-next"><img src="img/profile/right_arrow.png" alt="next" title="next" width="100%" /></span>
+                            </div>
+                        </div>
+                        <div class="name">
+                            <label for="name">대화명</label>
+                            <input class="name" type="text" id="name" value="" placeholder="로그인 할 대화명을 입력 해주세요.">
+                        </div>
+                        <button class="popupbtn" onclick="location.href='#!'">확인</a></button>
+                    </div>
+                </div>
+                <!-- 에러 팝업 -->
+                <div class="errorpopup">
+                    <p><i class="fas fa-exclamation-circle"></i></p>
+                    <p>시스템이 원활하지 않아 오류가 발생하였습니다. 잠시 후, 다시 참여해 주시기 바랍니다.</p>
+                    <a class="popupbtn" href="#!">닫기</a>
+                </div>
+                <!-- 커스텀 팝업 -->
+                <div class="custompopup">
+                    <p>팝업</p>
+                    <a class="popupbtn" href="#!">확인</a><a class="popupbtn" href="#!">취소</a>
+                </div>
+                <!-- 방제 / 채팅방 정보 불러오는 api가 없어 하드코딩 -->
+                <article class="title">
+                    <div class="live_title_wrap">
+                        <p id="roomNm">
+                            <span class="live_ico">Live</span>
+                            <span class="live_title">가나다라마바사아자차카타파하</span> (
+                            <a class="chat-user-list_btn">
+                                <i class="fas fa-user" aria-hidden="true"></i>01
+                            </a>)
+                        </p>
+                        <div class="livecommerce_help">
+                            <a href="#!" class="help">도움말</a>
+                            <a href="#!" id="closebtn"><i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+                </article>
+                 <!-- 도움말 시작 -->
+                 <div class="use_help">
+                    <div class="help_contents">
+                    <ul class="help_title_wrap">
+                        <li class="help_title">메시지 보내기</li>
+                        <img src="img/help/001.png" class="help_img" width="100%" />
+                        <ol class="help_subtitle_wrap">
+                        <li>전송하실 메시지를 입력하고 <span class="btn_send">전송</span>을 클릭하세요.</li>
+                        </ol>
+                    </ul>
+                    <ul class="help_title_wrap">
+                        <li class="help_title">이모지 및 이모티콘 보내기</li>
+                        <img src="img/help/002.png" class="help_img" width="100%" />
+                        <ol class="help_subtitle_wrap">
+                        <li>
+                            채팅 입력창 하단의 <span class="help_point"><i class="fas fa-laugh"></i></span> 을 클릭하시면 나타나는 목록에서 원하시는 이모지 또는
+                            이모티콘을 선택하세요.
+                        </li>
+                        </ol>
+                    </ul>
+                    <ul class="help_title_wrap">
+                        <li class="help_title">번역하기</li>
+                        <img src="img/help/006.png" class="help_img" width="100%" />
+                        <ol class="help_subtitle_wrap">
+                        <li>번역할 대화내용을 우클릭하세요.</li>
+                        <li>나타난 팝업창에서 번역할 언어를 선택하시면 번역된 대화내용이 나타납니다.</li>
+                        </ol>
+                    </ul>
+                    </div>
+                    <div class="btn_help_close">도움말 닫기</div>
+                </div>
+                <!-- 채팅방 -->
+                <article class="chat">
+                    <!-- 채팅 -->
+                    <div class="chat_contents">
+                        <div id="content1"></div>
+                    </div>
+                    <div class="chat_scroll" style="display: none"></div>
+                    <div class="chat_bottom">
+                        <!-- 메시지 작성 -->
+                        <div class="chat_input">
+                            <div class="textbox" id="content" contenteditable="true" placeholder="메세지 입력하기"></div>
+                            <!-- 이모지 및 이모티콘 영역 -->
+                            <div class="emoji-wrap">
+                                <!-- 이모지 탭  -->
+                                <div class="emoji_frame">
+                                <ul class="emoji-tab-wrap"></ul>
+                                </div>
+                            </div>
+                            <ul class="emoji">
+                                <li>
+                                    <a href="#!" class="ico_emoji show">
+                                        <i class="fas fa-laugh"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="ico_keyboard">
+                                        <i class="fas fa-keyboard"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="send"><a href="#!" id="sendCounter">전송</a></div>
+                        </div>
+                        <!-- 좋아요 -->
+                        <div class="like">
+                            <a href="#!" id="sendLike"><i class="fas fa-heart"></i></a>
+                            <span id="likeCounter"></span>
+                        </div>
+                    </div>
+                </article>
+                <!--채널 추가 팝업 시작-->
+                    <div class="channel-popup-dim">
+                        <!--대화상대 리스트 팝업 시작-->
+                        <!--노출 시 .active 추가-->
+                        <div class="chat-user-list-dim">
+                        <div class="chat-user-list-wrap">
+                            <div class="chat-user-list-title">
+                            <p>대화상대</p>
+                            <p><i class="fas fa-times"></i></p>
+                            </div>
+                            <div class="chat-user-list-contents">
+                            <ul class="chat-user-list">
+                                <li class="chat-user">
+                                <div class="invite-check"><input type="checkbox" id="invite" /><label for="invite"></label></div>
+                                <div class="user-profile-img profile-1"></div>
+                                <div class="user-name">가나다라마바사아자차카타파하</div>
+                                <div class="language">번역안함</div>
+                                <div class="lang-btn-wrap">
+                                    <input type="checkbox" class="lang-btn" id="switch" />
+                                    <label for="switch" class="switch_label">
+                                    <span class="onf_btn"></span>
+                                    </label>
+                                </div>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        <!--번역언어 선택 팝업 시작-->
+                        <div class="select-lang-dim">
+                            <div class="select-lang-wrap">
+                            <div class="select-lang-title">
+                                <p>번역 언어 선택</p>
+                                <p><i class="fas fa-times"></i></p>
+                            </div>
+                            <div class="select-lang-contents">
+                                <ul class="select-lang-list">
+                                <li class="select-lang">
+                                    <input type="radio" checked />
+                                    <label>번역안함</label>
+                                </li>
+                                <li class="select-lang">
+                                    <input type="radio" />
+                                    <label>English</label>
+                                </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="select-lang-btn">선택한 언어로 자동 번역하기</a>
+                            </div>
+                        </div>
+                        <!--번역언어 선택 팝업 끝-->
+                        </div>
+                        <!--대화상대 리스트 팝업 끝-->
+                    </div>
+                    <!--채널 추가 팝업 끝-->
+                    
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
