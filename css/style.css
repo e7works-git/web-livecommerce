@@ -1922,3 +1922,109 @@ div.livecommerce{
 .title a:hover {
 	text-decoration: underline;
 }
+/* 0213 참여자 제한 팝업 CSS */
+#entry.popup_dim {
+  position: absolute;
+  z-index: 250;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry_wrap {
+  width: 280px;
+  background: #fff;
+  box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry_title {
+  font-size: 16px;
+  color: #fff;
+  width: 100%;
+  height: 40px;
+  background: #2bc48a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry_contentswrap {
+  width: 85%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry_form {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.entry_form label {
+  width: 65px;
+  font-size: 14px;
+  color: #999;
+  display: block
+}
+
+.entry_form input {
+  width: calc(100% - 65px);
+  height: 30px;
+  border: 1px solid #ededed;
+  border-radius: 0;
+  outline: 0;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
+.entry_form input:focus {
+  border: 1px solid #2bc48a;
+}
+
+.entry_contents_subtitle {
+  font-size: 12px;
+  color: #ec2014;
+  line-height: 1.5;
+  text-align: center;
+  display: none;
+}
+
+.entry_btnwrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.entry_btnwrap button {
+  appearance: none;
+  font-size: 12px;
+  color: #6c7b85;
+  background: #e3e9ed;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  outline: 0;
+  margin-bottom: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.entry_btnwrap button:hover {
+  background: #2bc48a;
+  color: #fff;
+}
