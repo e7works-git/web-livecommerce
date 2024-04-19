@@ -88,7 +88,6 @@ $(function () {
             chatHeight(false, true);
             channel.sendMessage({
                 message: $('#content').text(),
-                messageType: JSON.stringify({ profile: res.profile }),
                 mimeType: "text"
             })
             $('#content').text('')
@@ -102,7 +101,6 @@ $(function () {
             e.preventDefault();
             channel.sendMessage({
                 message: $(this).text(),
-                messageType: JSON.stringify({ profile: res.profile }),
                 mimeType: "text"
             })
             $(this).text('');
@@ -236,11 +234,8 @@ function write(msg, tp, pre, sub) {
                 cc.find('.live_chat_profile').append($('<li>', { class: 'comment' }).html(escapeHtml(_msg)));
             } else if (typeof msg == 'object' && msg.message) {
                 let _msg = $(`<input value='${msg.message}' />`).val()
-                let profile = 'profile-1';
-                if (msg.messageType) {
-                    profile = 'profile-' + JSON.parse(msg.messageType).profile;
-                }
-                cc.find('.live_chat_profile').append($('<div>', { class: `profile-img ${profile}` }))
+                let profile = msg?.userInfo?.profile ?? 'profile-1';
+                cc.find('.live_chat_profile').append($('<div>', { class: `profile-img profile-${profile}` }))
                     .append($('<div>', { class: 'name' }).text(msg.nickName)); /* 0630 추가 */
                 if (msg.mimeType == 'emoji_img') {
                     var html = $('<li>', { class: 'comment' });
